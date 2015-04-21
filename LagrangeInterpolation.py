@@ -1,10 +1,10 @@
 import numpy as np
-import types
 
 class LagrangeInterpolation:
 
     def __init__(self, x, y):
-        if type(x) is not np.ndarray or type(y) is not np.ndarray:
+        if not isinstance(x, np.ndarray) or not isinstance(y, np.ndarray):
+            print(isinstance(x, np.ndarray))
             raise TypeError("Type of Parameter should be numpy.ndarray")
         
         sizex = x.shape
@@ -19,7 +19,7 @@ class LagrangeInterpolation:
         self.size = sizex[0]
 
     def predict(self, x):
-        if type(x) is not np.ndarray:
+        if not isinstance(x, np.ndarray):
             raise TypeError("Type of Parameter should be numpy.ndarray")
 
         y = []
@@ -37,5 +37,3 @@ class LagrangeInterpolation:
 
         return np.array(y)
 
-    def remainder(self):
-        return self.y - self.predict(self.x)
