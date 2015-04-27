@@ -16,7 +16,5 @@ class Interpolation:
             raise ValueError("Size of Parameter should be same")
     
         self.size = sizex[0]
-        self.x = x
-        self.y = y
-        self.x.shape = (1, self.size)
-        self.y.shape = (1, self.size)
+        self.x = x.reshape(1, self.size)
+        self.y = y.reshape(1, self.size)

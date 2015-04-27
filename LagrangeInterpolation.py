@@ -9,7 +9,10 @@ class LagrangeInterpolation(Interpolation):
 
     def predict(self, x):
         if not isinstance(x, np.ndarray):
-            raise TypeError("Type of Parameter should be numpy.ndarray")
+            raise TypeError("Type of Parameter should be 1 dimension numpy.ndarray")
+        else:
+            if len(x.shape) != 1:
+                raise TypeError("Type of Parameter should be 1 dimension numpy.ndarray")
 
         y = []
         l = np.empty(self.size)
@@ -22,8 +25,7 @@ class LagrangeInterpolation(Interpolation):
                 li[i : ] = lNume[i + 1 : ] / lDeno[i + 1 : ]
                 l[i] = li.cumprod()[-1]
 
-            l.shape = (1, len(l))
-            l = np.transpose(l)
+            l = l.reshape(len(l), 1)
 
             y.append(np.dot(self.y, l)[0][0])
 
