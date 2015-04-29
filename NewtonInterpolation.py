@@ -37,7 +37,7 @@ class NewtonInterpolation(Interpolation):
 
         y = []
         for xi in x:
-            xmult = np.linspace(xi, xi, self.size - 1) - self.y[0][self.size - 1]
+            xmult = np.linspace(xi, xi, self.size - 1) - self.x[0][ : -1]
             xmult = xmult.cumprod().reshape(1, self.size - 1)
             y.append(np.dot(xmult, self.dquo)[0][0] + self.y[0][0])
         
