@@ -16,6 +16,7 @@ class LagrangeInterpolation(Interpolation):
 
         y = []
         l = np.empty(self.size)
+        l = l.reshape(self.size, 1)
         li = np.empty(self.size - 1)
         for xi in x:
             lNume = np.linspace(xi, xi, self.size) - self.x[0]
@@ -23,9 +24,7 @@ class LagrangeInterpolation(Interpolation):
                 lDeno = np.linspace(self.x[0][i], self.x[0][i], self.size) - self.x[0]
                 li[ : i] = lNume[ : i] / lDeno[ : i]
                 li[i : ] = lNume[i + 1 : ] / lDeno[i + 1 : ]
-                l[i] = li.cumprod()[-1]
-
-            l = l.reshape(len(l), 1)
+                l[i][0] = li.cumprod()[-1]
 
             y.append(np.dot(self.y, l)[0][0])
 
