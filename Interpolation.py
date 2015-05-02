@@ -10,7 +10,7 @@ class Interpolation:
         sizex = x.shape
         sizey = y.shape
         if len(sizex) != 1 or len(sizey) != 1:
-            if not (len(sizex) == 2 and sizex[2] == 1 and len(sizey) == 2 and sizey[2] == 1):
+            if not (len(sizex) == 2 and sizex[1] == 1 and len(sizey) == 2 and sizey[1] == 1):
                 raise ValueError("Size of Parameter should be one dimension")
         if sizex != sizey:
             raise ValueError("Size of Parameter should be same")
