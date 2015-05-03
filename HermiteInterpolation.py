@@ -37,9 +37,6 @@ class HermiteInterpolation(Interpolation):
                 l[i] = li.cumprod()[-1]
                 alpha[i][0] = (1 - 2 * (xi - self.x[0][i]) * ((1 / lDeno[ : i]).sum() + (1 / lDeno[i + 1 : ]).sum())) * l[i] * l[i]
                 beta[i][0] = (xi - self.x[0][i]) * l[i] * l[i]
-            print(l)
-            print(alpha)
-            print(beta)
 
             y.append(np.dot(self.y, alpha)[0][0] + np.dot(self.yDrv, beta)[0][0])
 
