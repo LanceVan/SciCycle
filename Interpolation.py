@@ -4,7 +4,6 @@ class Interpolation:
 
     def __init__(self, x, y):
         if not isinstance(x, np.ndarray) or not isinstance(y, np.ndarray):
-            print(isinstance(x, np.ndarray))
             raise TypeError("Type of Parameter should be numpy.ndarray")
         
         sizex = x.shape
