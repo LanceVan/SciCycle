@@ -8,12 +8,11 @@ class Interpolation:
         
         sizex = x.shape
         sizey = y.shape
-        if len(sizex) != 1 or len(sizey) != 1:
-            if not (len(sizex) == 2 and sizex[1] == 1 and len(sizey) == 2 and sizey[1] == 1):
-                raise ValueError("Size of Parameter should be one dimension")
+        if not ((len(sizex) != 1 or (len(sizex) == 2 and sizex[0] == 1)) and (len(sizey) = 1 or (len(sizey) == 2 and sizey[0] == 1))):
+            raise ValueError("Size of Parameter should be vector or one dimension matrix based on numpy.ndarray")
         if sizex != sizey:
-            raise ValueError("Size of Parameter should be same")
-    
+            raise ValueError("Size of Parameters should be same")
+        
         self.size = sizex[0]
         self.x = x.reshape(1, self.size)
         self.y = y.reshape(1, self.size)

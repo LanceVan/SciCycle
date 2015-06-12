@@ -7,19 +7,18 @@ class HermiteInterpolation(Interpolation):
     def __init__(self, x, y, yDrv):
         Interpolation.__init__(self, x, y)
         sizeyDrv = yDrv.shape
-        if len(sizeyDrv) != 1:
-            if not (len(sizeyDrv) == 2 and sizeyDrv[1] == 1):
-                raise ValueError("Size of Parameter should be one dimension")
+        if not (len(sizeyDrv) == 1 or (len(sizeyDrv) == 2 and sizeyDrv[0] == 1)):
+            raise ValueError("Size of Parameter should be vector or one dimension matrix based on np.ndarray")
         if sizeyDrv[0] != self.size:
-            raise ValueError("Size of Parameter should be same")
+            raise ValueError("Size of Parameters should be same")
         self.yDrv = yDrv.reshape(1, self.size)
 
     def predict(self, x):
         if not isinstance(x, np.ndarray):
-            raise TypeError("Type of Parameter should be one dimension numpy.ndarray")
+            raise TypeError("Type of Parameter should be numpy.ndarray")
         else:
             if len(x.shape) != 1:
-                raise TypeError("Type of Parameter should be one dimension numpy.ndarray")
+                raise TypeError("Type of Parameter should be vector based on numpy.ndarray")
 
         y = []
         l = np.empty(self.size)

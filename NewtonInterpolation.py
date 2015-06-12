@@ -30,10 +30,10 @@ class NewtonInterpolation(Interpolation):
 
     def predict(self, x):
         if not isinstance(x, np.ndarray):
-            raise TypeError("Type of Parameter should be 1 dimension numpy.ndarray")
+            raise TypeError("Type of Parameter should be numpy.ndarray")
         else:
             if len(x.shape) != 1:
-                raise TypeError("Type of Parameter should be 1 dimension numpy.ndarray")
+                raise TypeError("Type of Parameter should be vector based on numpy.ndarray")
 
         y = []
         for xi in x:
